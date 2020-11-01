@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
+        app.logger.info("Checking password")
         return check_password_hash(self.password_hash, password)
 
 @login.user_loader
@@ -50,7 +51,7 @@ class Post(db.Model):
         self.author = form.author.data
         self.body = form.body.data
         self.user_id = userId
-
+        app.logger.info("Saving Details in Db")
         if file:
             filename = secure_filename(file.filename);
             fileextension = filename.rsplit('.',1)[1];
@@ -62,6 +63,7 @@ class Post(db.Model):
                     blob_service.delete_blob(blob_container, self.image_path)
             except Exception:
                 flash(Exception)
+                app.logger.error("Error while saving file")
             self.image_path =  filename
         if new:
             db.session.add(self)

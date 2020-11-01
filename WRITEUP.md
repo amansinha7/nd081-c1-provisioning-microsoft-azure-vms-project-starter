@@ -18,3 +18,5 @@ I have chosen the Azure App Service to host the app as CMS app is small app and 
 *Detail how the app and any other needs would have to change for you to change your decision in the last section.* 
 
 If the complexity of the app increases and requires more compute power and more languages in run time stack. I would deploy the app to VM
+
+http://udacityproj01.azurewebsites.net/
